@@ -21,7 +21,7 @@ jobs:
       run: dotnet build -c Release QR.csproj
 
     - name: Publish
-      run: dotnet publish -p:PublishProfile="Properties/PublishProfiles/FolderProfile.pubxml" -c Release
+      run: dotnet publish -p:PublishProfile="Properties/PublishProfiles/FolderProfile.pubxml" -c Release QR.csproj
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v4
