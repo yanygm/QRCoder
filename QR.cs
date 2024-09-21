@@ -15,11 +15,11 @@ namespace QRCoder
             this.BackColor = System.Drawing.Color.White;
             pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.Location = new Point(12, 36);
+            pictureBox1.Location = new Point(12, 47);
             this.Controls.Add(pictureBox1);
             pictureBox2 = new PictureBox();
             pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox2.Location = new Point(12, 250);
+            pictureBox2.Location = new Point(12, 259);
             this.Controls.Add(pictureBox2);
         }
 
