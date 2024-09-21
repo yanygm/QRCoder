@@ -43,7 +43,8 @@ namespace QRCoder
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(228, 339);
+            BackColor = Color.White;
+            ClientSize = new Size(224, 351);
             Controls.Add(textBox1);
             Name = "QR";
             Text = "QR";
