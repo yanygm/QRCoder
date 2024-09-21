@@ -1,10 +1,7 @@
 using System;
-using System.IO;
-using System.Windows.Forms;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.Windows.Compatibility;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace QRCoder
 {
@@ -18,9 +15,11 @@ namespace QRCoder
             this.BackColor = System.Drawing.Color.White;
             pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.Location = new Point(12, 36);
             this.Controls.Add(pictureBox1);
             pictureBox2 = new PictureBox();
             pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox2.Location = new Point(12, 250);
             this.Controls.Add(pictureBox2);
         }
 
@@ -28,15 +27,16 @@ namespace QRCoder
         {
             if (textBox1.Text.Length > 0)
             {
-                this.Controls.Remove(pictureBox2);
-                var options1 = new ZXing.Common.EncodingOptions
+                var options1 = new QrCodeEncodingOptions
                 {
-                    Height = 80,
-                    Width = 200
+                    Height = 200,
+                    Width = 200,
+                    Margin = 1,
+                    CharacterSet = "UTF-8"
                 };
                 var writer1 = new BarcodeWriter<Bitmap>
                 {
-                    Format = BarcodeFormat.CODE_128,
+                    Format = BarcodeFormat.QR_CODE,
                     Options = options1,
                     Renderer = new BitmapRenderer()
                 };
@@ -46,23 +46,17 @@ namespace QRCoder
                     {
                         bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
                         Image image = Image.FromStream(memoryStream);
-                        pictureBox2.Image = image;
-                        pictureBox2.Location = new Point(12, 250);
-                        this.Controls.Add(pictureBox2);
+                        pictureBox1.Image = image;
                     }
                 }
-
-                this.Controls.Remove(pictureBox1);
-                var options2 = new QrCodeEncodingOptions
+                var options2 = new ZXing.Common.EncodingOptions
                 {
-                    Height = 200,
-                    Width = 200,
-                    Margin = 1,
-                    CharacterSet = "UTF-8"
+                    Height = 80,
+                    Width = 200
                 };
                 var writer2 = new BarcodeWriter<Bitmap>
                 {
-                    Format = BarcodeFormat.QR_CODE,
+                    Format = BarcodeFormat.CODE_128,
                     Options = options2,
                     Renderer = new BitmapRenderer()
                 };
@@ -72,9 +66,7 @@ namespace QRCoder
                     {
                         bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
                         Image image = Image.FromStream(memoryStream);
-                        pictureBox1.Image = image;
-                        pictureBox1.Location = new Point(12, 36);
-                        this.Controls.Add(pictureBox1);
+                        pictureBox2.Image = image;
                     }
                 }
             }
